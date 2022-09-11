@@ -10,5 +10,19 @@
           <%= link_to 'Home', root_path, class: 'nav-link active' %>
         </li>
       </ul>
+      <ul class="navbar-nav ms-auto">
+        <% if patient_signed_in? %>
+          <li class="nav-item">
+            <%= button_to "Log out", destroy_patient_session_path, method: :delete, class: 'btn btn-outline-light me-2' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= button_to "Log in", new_patient_session_path, method: :get, class: 'btn btn-outline-light me-2' %>
+          </li>
+          <li class="nav-item">
+            <%= button_to "Sign up", new_patient_registration_path, method: :get, class: 'btn btn-warning me-2' %>
+          </li>
+        <% end %>
+      </ul>
   </div>
 </nav>
