@@ -9,18 +9,6 @@
         <li class="nav-item">
           <%= link_to 'Home', root_path, class: 'nav-link active' %>
         </li>
-        <% if patient_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "Profile", patient_profile_path, method: :get, class: 'nav-link active' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Doctors", new_patient_doctor_path, method: :get, class: 'nav-link active' %>
-          </li>
-        <% elsif doctor_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "Profile", doctor_profile_path, method: :get, class: 'nav-link active' %>
-          </li>
-        <% end %>
       </ul>
       <ul class="navbar-nav ms-auto">
         <% if patient_signed_in? %>
