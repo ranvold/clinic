@@ -16,7 +16,8 @@
       <div class="row">
         <% if flash[:notice] %>
           <div class="alert alert-info mt-2"><%= notice %></div>
-        <% elsif flash[:alert] %>
+        <% end %>
+        <% if flash[:alert] %>
           <div class="alert alert-warning mt-2"><%= alert %></div>
         <% end %>
         <%= yield %>
