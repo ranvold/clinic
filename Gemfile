@@ -13,10 +13,11 @@ gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'activeadmin', '~> 2.13', '>= 2.13.1'
 
 group :development, :test do
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'debug', '~> 1.6', '>= 1.6.2', platforms: %i[ mri mingw x64_mingw ]
+  gem 'letter_opener', '~> 1.8', '>= 1.8.1'
 end
 
 group :development do
-  gem "web-console"
+  gem 'web-console', '~> 4.2'
 end
 
