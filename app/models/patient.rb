@@ -1,6 +1,6 @@
 class Patient < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-         :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :confirmable,
+         :rememberable, :validatable, :recoverable
 
   has_many :appointments
   has_many :doctors, through: :appointments
