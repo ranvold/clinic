@@ -1,0 +1,18 @@
+<h1>New appointment</h1>
+
+<%= form_with model: @appointment, url: appointments_path, data: { turbo: false } do |form| %>
+  <div>
+    <%= form.label :doctor_id, 'Doctor' %><br>
+    <%= form.select :doctor_id, @doctors_for_appointment, selected: "1" %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :date %><br>
+    <%= datetime_select("appointment", "date", start_year: 2022, end_year: 2023, start_hour: 9, end_hour: 16, minute_step: 30, order: [:year, :month, :day, :hour]) %>
+  </div>
+  <br>
+  <div>
+    <%= form.submit 'Assign' %>
+  </div>
+<% end %>
+

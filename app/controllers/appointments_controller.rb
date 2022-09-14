@@ -5,13 +5,25 @@ class AppointmentsController < ApplicationController
   end
 
   def show
+    @appointment = Appointment.find(params[:id])
   end
 
   def new
-    appointment = Appointment.new
+    @appointment = Appointment.new
+    @doctors_for_appointment = Doctor.doctors_for_select
   end
 
   def create
+    @appointment = Appointment.new(appointment_params)
+
+    @appointment.patient = current_patient
+
+    if @appointment.save
+      redirect_to @appointment
+    else
+      @doctors_for_appointment = Doctor.doctors_for_select
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
