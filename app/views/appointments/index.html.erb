@@ -1,0 +1,53 @@
+<h1>Your appointments</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>
+        First name
+      </th>
+      <th>
+        Last name
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Recommendation
+      </th>
+    </tr>
+  </thead>
+  <tbody class="align-middle">
+  <% @dashboard.each do |appointment| %>
+    <tr>
+      <td>
+      <% if patient_signed_in? %>
+        <%= appointment.doctor.first_name %>
+      <% elsif doctor_signed_in? %>
+        <%= appointment.patient.first_name %>
+      <% end %>
+      </td>
+      <td>
+      <% if patient_signed_in? %>
+        <%= appointment.doctor.last_name %>
+      <% elsif doctor_signed_in? %>
+        <%= appointment.patient.last_name %>
+      <% end %>
+      </td>
+      <td style="width:15%">
+        <%= appointment.date %>
+      </td>
+      <td style="width:10%">
+      <% if appointment.recommendation.nil? && current_patient %>
+        <%= button_to "Not yet", appointment_path(appointment), method: :get, class: 'btn btn-secondary' %>
+      <% elsif appointment.recommendation.nil? && current_doctor %>
+        <%= button_to "Recommend", edit_appointment_path(appointment), method: :get, class: 'btn btn-warning' %>
+      <% else %>
+        <%= button_to "Recommended", appointment_path(appointment), method: :get, class: 'btn btn-success' %>
+      <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

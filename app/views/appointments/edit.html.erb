@@ -1,0 +1,17 @@
+<h2>Leaving recommendation</h2>
+
+<%= form_with model: @appointment, url: appointment_path, method: :patch do |form| %>
+
+  <div>
+    <%= form.label :recommendation %><br>
+    <%= form.text_area :recommendation, :cols => 60, :rows => 10  %>
+    <% @appointment.errors.full_messages_for(:recommendation).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <br>
+  <div>
+    <%= form.submit 'Add' %>
+  </div>
+<% end %>

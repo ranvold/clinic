@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  root to: 'home#index'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  devise_for :doctors
+  devise_for :patients
+
+  resources :appointments, only: [:index, :show, :new, :create, :edit, :update]
 end

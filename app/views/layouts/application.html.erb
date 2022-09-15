@@ -11,6 +11,17 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "shared/header" %>
+    <div class="container">
+      <div class="row">
+        <% if flash[:notice] %>
+          <div class="alert alert-info mt-2"><%= notice %></div>
+        <% end %>
+        <% if flash[:alert] %>
+          <div class="alert alert-warning mt-2"><%= alert %></div>
+        <% end %>
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
