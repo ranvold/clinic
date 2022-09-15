@@ -9,26 +9,36 @@
         <li class="nav-item">
           <%= link_to 'Home', root_path, class: 'nav-link active' %>
         </li>
+        <% if patient_signed_in? || doctor_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Appointments", appointments_path, method: :get, class: 'nav-link active' %>
+        </li>
+        <% end %>
+        <% if patient_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Doctors", new_appointment_path, method: :get, class: 'nav-link active' %>
+        </li>
+        <% end %>
       </ul>
       <ul class="navbar-nav ms-auto">
         <% if patient_signed_in? %>
-          <li class="nav-item">
-            <%= button_to "Log out", destroy_patient_session_path, method: :delete, class: 'btn btn-outline-light me-2' %>
-          </li>
+        <li class="nav-item">
+          <%= button_to "Log out", destroy_patient_session_path, method: :delete, class: 'btn btn-outline-light me-2' %>
+        </li>
         <% elsif doctor_signed_in? %>
-          <li class="nav-item">
-            <%= button_to "Log out", destroy_doctor_session_path, method: :delete, class: 'btn btn-outline-light me-2' %>
-          </li>
+        <li class="nav-item">
+          <%= button_to "Log out", destroy_doctor_session_path, method: :delete, class: 'btn btn-outline-light me-2' %>
+        </li>
         <% else %>
-          <li class="nav-item">
-            <%= button_to "Log in", new_patient_session_path, method: :get, class: 'btn btn-outline-light me-2' %>
-          </li>
-          <li class="nav-item">
-            <%= button_to "Sign up", new_patient_registration_path, method: :get, class: 'btn btn-warning me-2' %>
-          </li>
-          <li class="nav-item">
-            <%= button_to "I'm a doctor", new_doctor_session_path, method: :get, class: 'btn btn-info me-2' %>
-          </li>
+        <li class="nav-item">
+          <%= button_to "Log in", new_patient_session_path, method: :get, class: 'btn btn-outline-light me-2' %>
+        </li>
+        <li class="nav-item">
+          <%= button_to "Sign up", new_patient_registration_path, method: :get, class: 'btn btn-warning me-2' %>
+        </li>
+        <li class="nav-item">
+          <%= button_to "I'm a doctor", new_doctor_session_path, method: :get, class: 'btn btn-info me-2' %>
+        </li>
         <% end %>
       </ul>
   </div>

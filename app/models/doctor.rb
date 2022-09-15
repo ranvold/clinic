@@ -10,9 +10,7 @@ class Doctor < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  def full_name
-    "#{first_name} #{last_name}"
-  end
+  APPOINMTENT_LIMIT = 9
 
   def self.doctors_for_select
     doctors = Doctor.all
@@ -21,7 +19,7 @@ class Doctor < ApplicationRecord
                           .select("id")
                           .where("appointments.recommendation is null")
                           .group("id")
-                          .having("count(*) > ?", 10)
+                          .having("count(*) > ?", APPOINMTENT_LIMIT)
 
     doctors_in_hash = Hash.new {|h,k| h[k]=[]}
 
