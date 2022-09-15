@@ -32,6 +32,10 @@ class Doctor < ApplicationRecord
     return doctors_in_hash 
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   after_create { |admin| admin.send_reset_password_instructions }
   def password_required?
     new_record? ? false : super
